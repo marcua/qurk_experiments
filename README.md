@@ -2,7 +2,7 @@
 
 This repository contains all of the code and as much as possible of the materials requires to recreate the "Human-powered Sorts and Joins" paper from VLDB 2012 and the "Counting with the Crowd" paper from VLDB 2013.
 
-It is being released under a [CRAPL License](CRAP-LICENSE.txt), and is neither representative of the authors' software engineering abilities nor organized in a way that the authors would be proud of today.  This README is organized into three sections:
+It is being released under a [CRAPL License](CRAPL-LICENSE.txt), and is neither representative of the authors' software engineering abilities nor organized in a way that the authors would be proud of today.  This README is organized into three sections:
 
 * Setup required to trace through the footsteps of the authors that is common to both papers
 * Steps required to trace throguh the footsteps of the authors on the VLDB 2012 paper
