@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Sort the items</title>
+	
+    <style type="text/css">
+		#submit_btn {margin: 10px; background:#6FBF4D; color: white; width: 60px; height: 40px;}
+		.errmsg {color: red;}
+        .shorterr {width: 80px;}
+        .group_container {border-style: dashed; border-width: 1px; border-color: black; width: 800px; padding: 5px; margin: 5px;}
+		.square {background: black;}
+        .animal {width: 150px;}
+		.val_container {display: inline-block; zoom: 1; *display: inline}
+		.val_order {display: block; width: 20px;}
+    </style>
+    <script type="text/javascript">
+        var MAX_LENGTH = {{ max_len }};
+    </script>
+	<script type="text/javascript" src="/media/js/jquery.js"></script>	
+	<script type="text/javascript" src="/media/js/sort.js"></script>	
+	</head>
+  <body>
+    {{ SANDBOX }}
+        <h3>There 
+          {% if group_len == 1 %} is 1 group {% else %} are {{ group_len }} groups {% endif %} 
+          of {{ terms.plural }}.  We want to order the {{ terms.plural }} in 
+          {% if group_len == 1 %} this {% else %} each {% endif %} 
+          group from {{ terms.least }} to {{ terms.most }} to appear on the planet Saturn.</h3>
+        <ul>
+        {% if group_len > 1 %}<li>Each group is surrounded by a dotted line.  Only compare the {{ terms.plural }} within a group.</li>{% endif %}
+        <li>Within each group, assign a number from 1 to {{ max_len }} to each {{ terms.singular }}, so that:
+        <ul>
+        <li>1 represents the {{ terms.least }} {{ terms.singular }}, and {{ max_len }} represents the {{ terms.most }}.</li>
+        <li>We do not care about the specific value of each {{ terms.singular }}, only the relative order of the {{ terms.plural }}.</li>
+        <li>Some groups may have less than {{ max_len }} {{ terms.plural }}.  That is OK: use less than {{ max_len }} numbers, and make sure they are ordered according to {{ terms.feature }}.</li>
+        <li>If two {{ terms.plural }} in a group are the same {{ terms.feature }}, you should assign them the same number.</li>
+        </ul>
+        </ul>
+    <center>
+        {% for group in groups %}
+            <div class="group_container">
+                {% for val in group.1 %}
+                    <div class="val_container">
+                    {% autoescape off %}
+                        {{ val.1 }}
+                    {% endautoescape %}
+
+                    <input class="val_order" type="text" id="order_{{ group.0 }}_{{ val.0 }}"></input>
+                    <div class="errmsg shorterr"></div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endfor %}
+        <form id="form_turk" method="POST"
+            action="http://{{ sandbox|yesno:"workersandbox,www" }}.mturk.com/mturk/externalSubmit">
+            <input type="hidden" name="assignmentId" id="assignmentId" value=""></input>
+            {% for field in hidden_comparators %}
+                <input type="hidden" name="{{ field }}" id="{{ field }}" value=""></input>
+            {% endfor %}
+            <div id="globalerror" class="errmsg"></div>
+            <input type="button" id="submit_btn" value="Submit" />
+        </form>
+    </center>
+  </body>
+</html>
+
+
+<input type="

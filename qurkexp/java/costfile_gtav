@@ -1,0 +1,4 @@
+male	male	0
+male	female	1
+female	male	1
+female	female	0

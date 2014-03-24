@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Movie Scene Features</title>
+	
+    <style type="text/css">
+		#submit_btn {margin: 10px; background:#6FBF4D; color: white; width: 60px; height: 40px;}
+		.errmsg {color: red;}
+    </style>
+	
+	<script type="text/javascript"    src="/media/js/jquery.js"></script>	
+	<script type="text/javascript"    src="/media/js/celeb_features.js"></script>	
+	</head>
+  <body>
+    <h3>Identify the features of the movie scene below</h3>
+    <ul>
+    <li>If you are unsure about a feature, select <b>{{ cant_tell }}</b>.</li>
+    </ul>
+    <center>
+        <img width="500px" alt=""
+        src="http://wutang.csail.mit.edu:8000/media/images/scenes/{{ imgurl }}.jpg" />
+    <form id="form_turk" method="POST" action="http://{{ SANDBOX|yesno:"www,workersandbox" }}.mturk.com/mturk/externalSubmit">
+        <input type="hidden" name="assignmentId" id="assignmentId" value=""></input>
+        {% for f in features %}
+            <div class="feature">
+                <span>{{ f.feature.name }} :
+                    <select name="feature_{{ f.feature.id }}" class="featureDropdown">
+                        <option selected value="default"></option>
+                        {% for fv in f.vals %}
+                            <option value="{{ fv.id }}">{{ fv.name }}</option>
+                        {% endfor %}
+                    </select>
+                </span>
+                <span class="errmsg">
+                </span>
+            </div>
+        {% endfor %}
+        <input type="button" id="submit_btn" value="Submit" />
+    </form>
+    </center>
+  </body>
+</html>
+
+<input type="

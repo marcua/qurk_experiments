@@ -1,0 +1,9 @@
+IS    IS	0
+ME    ME	0
+QF    QF	0
+IS    QF	1
+IS    ME	1
+ME    QF	1
+ME    IS	1
+QF    IS	1
+QF    ME	1

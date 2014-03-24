@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Count the items</title>
+
+    <style type="text/css">
+      #submit_btn {margin: 10px; background:#6FBF4D; color: white; width: 60px; height: 40px;}
+        .value_radio { font-size: 26px; padding: 5px; margin: 5px; border-color: black; border-width: 1px; border-style: dotted;}
+        .errmsg {color: red;}
+        .items {display: inline-block; zoom: 1; *display: inline; width: 800px; padding: 5px; margin: 5px;}
+        .itemquestion_container {border-style: solid; border-width: 1px; border-color: black; width: 600px; margin: 20px; padding: 10px;}
+        .item {width: 125px;}
+        .tweet {width: 580px; border-color: black; border-width: 1px; padding: 5px; margin: 5px; border-style: solid; font-family: monospace;}
+        .val_order {display: block; width: 20px;}
+    </style>
+    <script type="text/javascript" src="/media/js/jquery.js"></script>	
+    <script type="text/javascript" src="/media/js/simplebatch.js"></script>	
+    <script type="text/javascript" src="/media/js/estimation.js"></script>	
+    <script type="text/javascript">
+        var NUM_ITEMS = {{ num_items }};
+    </script>
+
+  </head>
+  <body>
+    <h3>There are {{ num_items }} {{ plural_type.0 }} below.  Please identify the {{ property }} of each.
+    <center>
+        <form id="form_turk" method="POST"
+            action="http://{{ sandbox|yesno:"workersandbox,www" }}.mturk.com/mturk/externalSubmit">
+            <input type="hidden" name="assignmentId" id="assignmentId" value=""></input>
+
+      <div class="items">
+      {% for item in batch %}
+        <div class="itemquestion_container">
+          <div class="item_container">
+            {% autoescape off %}
+              {{ item.1 }}
+            {% endautoescape %}
+          </div>
+          <div class="question_container">
+            {% autoescape off %}
+              What is the {{ property }} of this {{ singular_type }}?
+            {% endautoescape %}
+          </div>
+          <div class="answer_container">
+            {% for property in properties %}
+              <input type="radio" class="value_radio" name="value__{{ item.0 }}" id="value__{{ item.0 }}" value="{{ property.value }}">{% autoescape off %}{{ property.human_value }}{% endautoescape %}</input></a>
+            {% endfor %}
+            <span class="errmsg"></span>
+            </div>
+        </div>
+      {% endfor %}
+      </div>
+            <div id="globalerror" class="errmsg"></div>
+            <input type="hidden" name="seconds_spent" id="seconds_spent" value=""></input>
+            <input type="hidden" name="screen_width" id="screen_width" value="-1"></input>
+            <input type="hidden" name="screen_height" id="screen_height" value="-1"></input>
+            <input type="submit" id="submit_btn" value="Submit" />
+        </form>
+    </center>
+  </body>
+</html>

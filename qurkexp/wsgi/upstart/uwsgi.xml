@@ -1,0 +1,11 @@
+<uwsgi>
+  <socket>/tmp/qurkexp.sock</socket>
+  <!--<socket>0.0.0.0:9000</socket>-->
+  <chdir>/PATH/TO/qurkexp/</chdir>
+  <pythonpath>..</pythonpath>
+  <module>wsgi_app</module>
+  <uid>qurkexp</uid> 
+  <chmod-socket/>
+  <logto>/var/log/uwsgi.log</logto>
+  <plugins>python</plugins>
+</uwsgi>

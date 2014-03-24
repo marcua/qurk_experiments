@@ -1,0 +1,27 @@
+ant
+grasshopper
+whale
+tiger
+dog
+camel
+parrot
+panther
+eagle
+turkey
+octopus
+baboon
+dolphin
+great white shark
+elephant seal
+hippo
+komodo dragon
+tazmanian devil
+lempur
+moose
+rat
+hyena
+skunk
+rock
+bee
+wolf
+flower

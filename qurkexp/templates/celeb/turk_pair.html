@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Celebrity matches</title>
+	
+    <style type="text/css">
+		#btn_yes {margin: 10px; background:#6FBF4D; color: white; width: 60px; height: 40px;}
+		#btn_no {margin: 10px; background:#CE1009; color: white; width: 60px; height: 40px;}
+    </style>
+	
+	<script type="text/javascript"    src="/media/js/jquery.js"></script>	
+	<script type="text/javascript"    src="/media/js/celeb.js"></script>	
+	</head>
+  <body>
+    By accepting this HIT, you agree to the <a href="">human subjects
+    protocol described at this link.</a>
+    <h3>Is the same celebrity in the image on the left and the image on the right?</h3>
+    <center>
+        <input type="button" id="btn_yes" value="Yes" />
+        <input type="button" id="btn_no" value="No" />
+        <table>
+            <tbody>
+                <tr>
+                    <td><img width="300px" alt="" src="http://people.csail.mit.edu/marcua/experiments/join/1/{{ pair.left }}.jpg" /></td>
+                    <td><img width="300px" alt="" src="http://people.csail.mit.edu/marcua/experiments/join/2/{{ pair.right}}.jpg" /></td>
+                </tr>
+            </tbody>
+        </table>
+    </center>
+    <form id="form_turk" style="display:none;" method="POST"
+    action="http://{{ SANDBOX|yesno:"www,workersandbox" }}.mturk.com/mturk/externalSubmit">
+        <input type="hidden" name="assignmentId" id="assignmentId" value=""></input>
+        <input type="hidden" id="same" name="same" value="" />
+    </form>
+  </body>
+</html>
+
+
+<input type="

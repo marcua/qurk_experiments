@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Celebrity matches</title>
+	
+    <style type="text/css">
+		#submit_btn {margin: 10px; background:#6FBF4D; color: white; width: 60px; height: 40px;}
+		.errmsg {color: red;}
+		.rightimg, .leftimg {border: 5px solid white;}
+		div:hover .rightimg, div:hover .leftimg {border: 5px solid #ccc;}		
+		div img.selected {border: 5px solid red;}
+		td {vertical-align: top;}
+		.match { border: 5px solid white;}
+		.match:hover { border: 5px solid red;}
+		body{min-width: 600px;}
+    </style>
+	
+	<script type="text/javascript"    src="/media/js/jquery.js"></script>	
+	<!--[if IE]><script type="text/javascript" src="/media/js/excanvas.js"></script><![endif]-->
+	<script type="text/javascript"    src="/media/js/jui.js"></script>		
+	<script type="text/javascript"    src="/media/js/batch_pair.js?blah=1"></script>	
+	</head>
+  <body>
+    <h3>Find pairs of images with the same celebrity</h3>
+    <ul>
+        <li>To select pairs, click on an image on the left and an image on
+        the right.  Selected pairs will appear in the <b>Matched
+        Celebrities</b>
+        list on the left.</li>
+        <li>To magnify a picture, hover your pointer above it. </li>
+        <li>To unselect a selected pair, click on the pair in the list on the
+        left.</li>
+        <li>If none of the celebrities match, check the <b>I did not find any
+        pairs</b> checkbox.</li>
+        <li>There may be multiple matches per page.</li>
+    </ul>
+    
+	<table>
+	<tr>
+	<td id="previewtd" width="310">
+	</td>
+	<td width="150">
+		<table>
+		{% for left in lefts %}
+		<tr><td>
+			<div><img id="left_{{left.pk}}" pk="{{left.pk}}" width="100" class="leftimg" src="{{left.url}}"></div>
+		</td></tr>
+		{% endfor %}
+		</table>
+	</td>
+	<td width="10" style="position:relative" id="motherofgod">
+		
+	</td>
+	<td width="150">
+		<table>
+		{% for right in rights %}
+		<tr><td>
+			<div><img id="right_{{right.pk}}" pk="{{right.pk}}" width="100" class="rightimg" src="{{right.url}}"></div>
+		</td></tr>		
+		{% endfor %}
+		</table>		
+	</td>
+	<td width="300" id="matchcontainer">
+        <b>Matched Celebrities</b>
+    </td>
+	</tr>
+	<tr>
+		<td>&nbsp;</td>
+		<td colspan=4>
+
+			<form id="form_turk" method="POST"
+		    action="http://{{ SANDBOX|yesno:"www,workersandbox" }}.mturk.com/mturk/externalSubmit">
+				{% for left in lefts %}
+					{% for right in rights %}
+						<input type="hidden" id="radio_{{left.pk}}_{{right.pk}}" name="radio_{{left.pk}}_{{right.pk}}" class="hiddenfield" value="false">
+					{% endfor %}
+				{% endfor %}
+
+		        <input type="hidden" name="assignmentId" id="assignmentId" value=""></input>
+		        <div id="globalerror" class="errmsg"></div>
+				<div><input type="checkbox" id="cb_nopairs" />I did not find any pairs</div>
+		        <input type="button" id="submit_btn" value="Submit" />
+			</form>
+		</td>
+	</tr>
+	</table>
+
+
+
+  </body>
+</html>

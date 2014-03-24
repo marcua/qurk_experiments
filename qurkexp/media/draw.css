@@ -1,0 +1,38 @@
+html {height: 100%; margin: 0px; padding: 0px;}
+body{font-family: garamond; font-size: 20pt; height: 100%; margin: 0px; padding: 10px; position: relative;}
+h1,h2,h3,h4 {font-family: garamond;}
+input {font-family: garamond; font-size: 20pt; }
+a, button, input[type="submit"] {
+	font-family: garamond; 
+	font-size: 20pt; 
+	padding: 3px;
+	background: white; 
+	color:#4294FF; 
+	text-decoration: none; 
+	border: none; 
+	border-bottom:1px dotted #aac;}
+a:hover, button:hover, input[type="submit"]:hover{
+	background:#efefef; 
+	border-bottom:1px solid #aac;
+	cursor: pointer;}
+button,input[type="submit"] {color: black;}
+.preview {width: 100%; margin: 0px; text-align: center; background: #6FBF4D; color: white;}
+.overlimit {width: 100%; margin: 0px; text-align: center; background: #CE1009; color: white;}
+.warn {width: 100%; margin: 0px; text-align: center; background: #F8FA2F; color: white;}
+
+p.info {font-size: 12pt; color: #777; padding-left: 20px;}
+ol li {font-size: 12pt; color: #777;}
+
+
+#bodycontainer{margin:0px; height: 100%; width: 100%;}
+#info {width: 350px; height: 100%;  border-right: 1px solid #eaeaea; padding: 10px; vertical-align: top;}
+
+.mycolorpicker,.sizepicker {width: 30px; height: 30px; border: 3px solid white; margin-bottom: 4px; }
+.mycolorpicker:hover,.sizepicker:hover {border: 3px solid #e0e0e0; cursor: pointer;}
+.selected {border: 3px solid #e0e0e0;}
+#color1 {margin-top: 5px}
+.sizepicker {vertical-align: middle;}
+#size1 div {margin: auto; margin-top:16px; background: black; width: 2px; height: 2px;}
+#size2 div {margin: auto; margin-top: 12px; background: black; width: 5px; height: 5px;}
+#size3 div {margin: auto; margin-top: 10px; background: black; width: 10px; height: 10px;}
+#size4 div {margin: auto; margin-top: 7px; background: black; width: 15px; height: 15px;}

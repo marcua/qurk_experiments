@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Count the items</title>
+
+    <style type="text/css">
+      #submit_btn {margin: 10px; background:#6FBF4D; color: white; width: 60px; height: 40px;}
+        .count { width: 57px; height: 40px; font-size: 26px;}
+        .errmsg {color: red;}
+        .items {display: inline-block; zoom: 1; *display: inline; border-style: dashed; border-width: 1px; border-color: black; width: 800px; padding: 5px; margin: 5px;}
+        .item_container {display: inline-block; zoom: 1; *display: inline;}
+        .item {width: 125px;}
+        .tweet {width: 580px; border-color: black; border-width: 1px; padding: 5px; margin: 5px; border-style: solid; font-family: monospace;}
+        .val_order {display: block; width: 20px;}
+    </style>
+    <script type="text/javascript" src="/media/js/jquery.js"></script>	
+    <script type="text/javascript" src="/media/js/simplecount.js"></script>	
+    <script type="text/javascript" src="/media/js/estimation.js"></script>	
+    <script type="text/javascript">
+        var NUM_ITEMS = {{ num_items }};
+    </script>
+
+  </head>
+  <body>
+    <h3>There are {{ num_items }} {{ plural_type.0 }} below.  Please provide rough estimates for how many of the {{ plural_type.1 }} have various properties.
+    <center>
+        <form id="form_turk" method="POST"
+            action="http://{{ sandbox|yesno:"workersandbox,www" }}.mturk.com/mturk/externalSubmit">
+            <input type="hidden" name="assignmentId" id="assignmentId" value=""></input>
+            {% for property in properties %}
+            <div class="count_container">
+              {% autoescape off %}
+              About how many of the {{ num_items }} {{ plural_type.1 }} {{ property.question }}?
+              {% endautoescape %}
+            <input type="text" class="count" name="count__{{ property.value }}" id="count__{{ property.value }}" value=""></input>
+            <span class="errmsg"></span>
+            </div>
+            {% endfor %}
+      <div class="items">
+      {% for item in batch %}
+        <div class="item_container">
+        {% autoescape off %}
+          {{ item.1 }}
+        {% endautoescape %}
+        </div>
+      {% endfor %}
+      </div>
+            <div id="globalerror" class="errmsg"></div>
+            <input type="hidden" name="seconds_spent" id="seconds_spent" value=""></input>
+            <input type="hidden" name="screen_width" id="screen_width" value="-1"></input>
+            <input type="hidden" name="screen_height" id="screen_height" value="-1"></input>
+            <input type="submit" id="submit_btn" value="Submit" />
+        </form>
+    </center>
+  </body>
+</html>

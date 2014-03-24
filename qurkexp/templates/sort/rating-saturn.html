@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Rank the items</title>
+	
+    <style type="text/css">
+		#submit_btn {margin: 10px; background:#6FBF4D; color: white; width: 60px; height: 40px;}
+		.errmsg {color: red;}
+		.square {background: black;}
+        .animal {width: 150px;}
+        .group_container {border-style: dashed; border-width: 1px; border-color: black; width: 800px; padding: 5px; margin: 5px;}
+		.val_container {display: inline-block; zoom: 1; *display: inline}
+        .example_container {border-width: 1px; border-color: black; width: 800px; padding: 5px; margin: 5px 5px 50px 5px; text-align: center;}
+		.example_instance {display: inline-block; zoom: 1; *display: inline}
+        td {text-align: center;}
+    </style>
+	<script type="text/javascript" src="/media/js/jquery.js"></script>	
+	<script type="text/javascript" src="/media/js/rate.js"></script>	
+	</head>
+  <body>
+        <h3>There {% if group_len == 1 %} is 1 {{ terms.singular }} {% else %} are {{ group_len }} {{ terms.plural }} {% endif %} below.  We want to rate {{ terms.plural }} by their {{ terms.feature }}.</h3>
+        <ul>
+        <li>For {% if group_len == 1 %} this {% else %} each {% endif %} {{ terms.singular }}, assign it a number from 1 ({{ terms.least }}) to 7 ({{ terms.most }}) indicating its {{ terms.feature }}.</li>
+        <li>
+            For perspective, here is a small number of other randomly picked {{ terms.plural }}:
+        </li>
+        </ul>
+    <center>
+        <div class="example_container">
+        {% for example in examples %}
+            <div class="example_instance">
+            {% autoescape off %}
+                {{ example }}
+            {% endautoescape %}
+            </div>
+        {% endfor %}
+        </div>
+        <form id="form_turk" method="POST"
+            action="http://{{ sandbox|yesno:"workersandbox,www" }}.mturk.com/mturk/externalSubmit">
+            <input type="hidden" name="assignmentId" id="assignmentId" value=""></input>
+        {% for group in groups %}
+            <div class="group_container">
+                {% for val in group.1 %}
+                    <div class="val_container">
+                    {% autoescape off %}
+                        {{ val.1 }}
+                    {% endautoescape %}
+                    <table id="likerts">
+                    <tr>
+                    <td>{{ terms.least }}</td>
+                    <td><input class="val_rate" type="radio" name="rate_{{ val.0 }}" id="rate_{{ val.0 }}" value="1"></input>
+                    <td><input class="val_rate" type="radio" name="rate_{{ val.0 }}" id="rate_{{ val.0 }}" value="2"></input>
+                    <td><input class="val_rate" type="radio" name="rate_{{ val.0 }}" id="rate_{{ val.0 }}" value="3"></input>
+                    <td><input class="val_rate" type="radio" name="rate_{{ val.0 }}" id="rate_{{ val.0 }}" value="4"></input>
+                    <td><input class="val_rate" type="radio" name="rate_{{ val.0 }}" id="rate_{{ val.0 }}" value="5"></input>
+                    <td><input class="val_rate" type="radio" name="rate_{{ val.0 }}" id="rate_{{ val.0 }}" value="6"></input>
+                    <td><input class="val_rate" type="radio" name="rate_{{ val.0 }}" id="rate_{{ val.0 }}" value="7"></input>
+                    <td>{{ terms.most }}</td>
+                    </tr>
+                    <tr>
+                    <td></td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>3</td>
+                    <td>4</td>
+                    <td>5</td>
+                    <td>6</td>
+                    <td>7</td>
+                    <td></td>
+                    </tr>
+                    </table>
+                    <div class="errmsg"></div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endfor %}
+            <div id="globalerror" class="errmsg"></div>
+            <input type="button" id="submit_btn" value="Submit" />
+        </form>
+    </center>
+  </body>
+</html>

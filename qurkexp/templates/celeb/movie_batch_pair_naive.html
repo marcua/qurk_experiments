@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Celebrity matches</title>
+	
+    <style type="text/css">
+		#submit_btn {margin: 10px; background:#6FBF4D; color: white; width: 60px; height: 40px;}
+		.errmsg {color: red;}
+        .pair_container {border-style: solid; border-width: 1px;
+        border-color: black; width: 700px; margin: 5px;}
+    </style>
+	
+	<script type="text/javascript"    src="/media/js/jquery.js"></script>	
+	<script type="text/javascript"    src="/media/js/batch_pair_naive.js"></script>	
+	</head>
+  <body>
+    <h3>Is the actor on the left the main focus of the scene on the right?</h3>
+	<div>If you cannot tell, choose "No"</div>
+    <form id="form_turk" method="POST"
+    action="http://{{ SANDBOX|yesno:"www,workersandbox" }}.mturk.com/mturk/externalSubmit">
+    <center>
+        {% for pair in pairs %}
+            <div class="pair_container">
+            <div class="radio_container">
+                <span>
+                    <input type="radio" class="radiopair" id="radio_{{ pair.left }}_{{ pair.right }}_1" name="radio_{{ pair.left }}_{{ pair.right }}" value="true" />
+                    <label for="radio_{{ pair.left }}_{{ pair.right }}_1">Yes</label>
+                    <input type="radio" class="radiopair" id="radio_{{ pair.left }}_{{ pair.right }}_2" name="radio_{{ pair.left }}_{{ pair.right }}" value="false" />
+                    <label for="radio_{{ pair.left }}_{{ pair.right }}_2">No</label>
+                </span>
+                <span class="errmsg">
+                </span>
+            </div>
+
+            <table>
+                <tbody>
+                    <tr>
+                        <td><img width="300px" alt="" src="{{pair.lurl}}" /></td>
+                        <td><img width="300px" alt="" src="{{pair.rurl}}" /></td>
+                    </tr>
+                </tbody>
+            </table>
+            </div>
+        {% endfor %}
+        <input type="hidden" name="assignmentId" id="assignmentId" value=""></input>
+        <div id="globalerror" class="errmsg"></div>
+        <input type="button" id="submit_btn" value="Submit" />
+    </form>
+    </center>
+  </body>
+</html>
+
+
+<input type="
