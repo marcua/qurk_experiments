@@ -11,7 +11,7 @@ It is being released under a [CRAPL License](CRAPL-LICENSE.txt), and is neither 
 Some notes and clarifications:
 
 * Having stepped away from this codebase for two years and then returning to it to write a README on how to use it, it's clear that this work would best be repeated with the help of one of the authors.  Please contact Adam Marcus if you intend on using this codebase, and he will happily help you get started.
-* Some files may remain in this repository from our SIGMOD 2011 demo of Qurk.  We've almost entirely sanitized this repository of the demo for the purposes of clarity, but if you see anything and are curious, we can retrieve the remainder of the files for you..
+* Some files may remain in this repository from our SIGMOD 2011 demo of Qurk.  We've almost entirely sanitized this repository of the demo for the purposes of clarity, but if you see anything and are curious, we can retrieve the remainder of the files for you.
 
 
 # Common setup notes
@@ -46,18 +46,15 @@ Code that communicates with Mechanical Turk:
   * `generate_[batchpairs|comparisons|filters|pairs].py` Creates new experiments.  *Running these scripts will likely result in your spending money*.  The four scripts respectively are used to create [Naive/Smart batching joins|comparisons or ratings|filters for joins|simple joins] as described in the paper.  Whatever name you pick for your experiments will be used in later scripts to refer to that experiment.
   * `cron.py` is the daemon that will poll MTurk for completed HIT assignments and log Turker feedback.  Take note that there are several calls to `exit()` toward the bottom of the file.  Between blocks on `exit()`s is otherwise-unreachable code that we found helpful for both generating experiments and then polling for their completion, which makes it easier to walk away from the experiments as they run.
   * `movie_[batchpairs|comparisons|filters|results].py` contains all of the code for the end-to-end query in Section 5.
-  * `latency.py` runs experiments and reports on experimental latency.
-
-Calls external libraries:
-
-  * `gal.py` is a Python driver for Ipeirotis et al.'s Get-Another-Label code (found in the `java/` subdirectory).  Given an experiment type and the name of several experiments (to combine), it will return the worker quality and most likely result according to the Get-Another-Label algorithm.  These results are reported as *QualityAdjust* in the paper.  
-
+  
 Backend code for munging MTurk data.  Doesn't communicate with Mechanical Turk:
 
+  * `latency.py` runs experiments and reports on experimental latency.
   * `filter_results.py` and `filter_results_sample.py` contain the code necessary to evaluate Feature Filtering with or without sampling (Tables 2, 3, 4).
   * `hybrid.py` and `hybrid_[correlation|extrapolate].py` power the hybrid rate/sort algorithm in all of its variants.
   * `pair-datadump.py` dumps any of the join experiment data, broken down by worker response.
   * `pair-results.py` reports on the accuracy of the join experiments (Fig 3, Table 1) as well as the regression we ran in section 3.3.3.
+  * `gal.py` is a Python driver for Ipeirotis et al.'s Get-Another-Label code (found in the `java/` subdirectory).  Given an experiment type and the name of several experiments (to combine), it will return the worker quality and most likely result according to the Get-Another-Label algorithm.  These results are reported as *QualityAdjust* in the paper.  
   * `ranking-comparisons.py` compares different sort algorithms' accuracy (\Tau), as well as inter-rater agreement (\Kappa).  `run_names1` and `run_names2` specify which experiments (combined, if the list contains more than one experiment name) to utilize to generate a ranking, and then compares the two rankings. If `run_names1` contains `sortval` as the only member in its list, it will be used as a ground-truth comparison, which is how we measure \Tau. `ranking-comparisons-sampled.py` contains similar logic but for the sampled experiments in Figure 6.
   * `sort-datadump.py` dumps the contents of a comparison-based sort experiment.
   * `sort-results.py` runs similar logic to `ranking-comparisons.py`, but prints a less scientific measure of accuracy.  We used this to get examples of incorrect responses for both comparison-based and rating-based ranking.
