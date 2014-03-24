@@ -4,7 +4,7 @@ This repository contains all of the code and as much as possible of the material
 
 It is being released under a [CRAPL License](CRAPL-LICENSE.txt), and is neither representative of the authors' software engineering abilities nor organized in a way that the authors would be proud of today.  This README is organized into three sections:
 
-* Setup required to trace through the footsteps of the authors that is common to both papers
+* Setup required for both papers
 * Steps required to trace throguh the footsteps of the authors on the VLDB 2012 paper
 * Steps required to trace throguh the footsteps of the authors on the VLDB 2013 paper
 
@@ -22,9 +22,9 @@ Both papers cost on the order of $1000 worth of Mechanical Turk experimentation 
 
 
 ## Step 2: Apply to your Institute Review Board (IRB)
-If you are running these experiments from within academia, and are using government funding agency funds to run these experiments, you are endangering your school and lab's future funding if you do not apply to your Institite Review Board to perform experiments with human subjects.
+If you are running these experiments from within academia, and are using government agency funds to run these experiments, you are endangering your school and lab's future funding if you do not apply to your Institite Review Board to perform experiments with human subjects.
 
-If you'd like to see an IRB application (to MIT's COUHES), take a look at [COUHES-APPLICATION.docx]($$$).  Before you can submit a similar application to your IRB, you will have to get human subjects training.  At an institution with a reasonable IRB, you should allocate about a month for training and approval.
+Our application (to MIT's [COUHES](http://couhes.mit.edu/)) was pretty painless, but took a few back-and-forths and discussions of how we could get the equivalent of informed consent without a Turker being present and signing a physical form.  Before you can submit a similar application to your IRB, you will have to get human subjects training.  At an institution with a reasonable IRB, you should allocate about a month for training and approval.
 
 
 ## Step 3: Get the software hosted
