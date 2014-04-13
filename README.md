@@ -1,6 +1,6 @@
 # Qurk VLDB 2012 and 2013 experiments
 
-This repository contains all of the code and as much as possible of the materials requires to recreate the "Human-powered Sorts and Joins" paper from VLDB 2012 and the "Counting with the Crowd" paper from VLDB 2013.
+This repository contains all of the code and as much as possible of the materials requires to recreate the [Human-powered Sorts and Joins paper from VLDB 2012](http://marcua.net/papers/qurk-vldb2012.pdf) and the [Counting with the Crowd paper from VLDB 2013](http://marcua.net/papers/qurk-vldb2013.pdf).
 
 Our code is being released under a [BSD License](LICENSE).  It is neither representative of the authors' software engineering abilities nor organized in a way that the authors would be proud of today, but is being released to facilitate reproducibility.  This README is organized into three sections:
 
