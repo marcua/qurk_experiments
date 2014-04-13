@@ -4,7 +4,7 @@ There's been increasing interest in the computer science research community in e
 
 In cleaning up the code and writing up the instructions, I had some time to think through what reproducibility means for crowd computing.  Can we, as Collberg et al. suggest, hold crowd research to the following standard:
 
-	Can a CS student build the software within 30 minutes, including finding and installing any dependent software and libraries, and without bothering the authors?
+	Can a CS student build the software within 30 minutes...without bothering the authors?
 
 My current thinking is a strong no: <b>not only can crowd researchers not hold their work to this standard of reproducibility, but it would be irresponsible for our community to reach that goal</b>.  In fact, even if we opt for a different [interpretation of reproducibility](http://cs.brown.edu/~sk/Memos/Examining-Reproducibility/) that requires an independent reconstruction of the research, making crowdsourcing research reproducible requires care.
 
@@ -40,4 +40,4 @@ From here, I'll spell out what makes crowd research reproducibility hard.  It wo
 
 As crowd research matures, it will be important for us to ask what reproducibility means to our community.  The answer will look pretty different from that of other areas of computer science.  What are your thoughts?
 
-*Thank you to Peter Baiis and Michael Bernstein for providing feedback on drafts of this piece, and to my coauthors for helping get our work to a reproducible state.*
+*Thank you to Peter Bailis and Michael Bernstein for providing feedback on drafts of this piece, and to my coauthors for helping get our work to a reproducible state.*
